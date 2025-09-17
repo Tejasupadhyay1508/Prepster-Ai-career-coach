@@ -1,8 +1,7 @@
-import React from "react";
-const MainLayout = ({childer}) =>{
+import React, { children } from "react";
+const MainLayout = ({children}) =>{
 // redirect useer after onbording
-    return
-        <div className="container mx-auto mt-24 mb-20">{childer}</div>
+    return <div className="container mx-auto mt-24 mb-20">{children}</div>
     
 }
 
