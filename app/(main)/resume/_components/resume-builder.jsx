@@ -23,7 +23,9 @@ import useFetch from "@/hooks/use-fetch";
 import { useUser } from "@clerk/nextjs";
 import { entriesToMarkdown } from "@/app/lib/helper";
 import { resumeSchema } from "@/app/lib/schema";
-import html2pdf from "html2pdf.js/dist/html2pdf.min.js";
+import ReactMarkdown from "react-markdown";
+
+
 
 
 export default function ResumeBuilder({ initialContent }) {
@@ -129,26 +131,51 @@ export default function ResumeBuilder({ initialContent }) {
     }
   };
 
-  
   const generatePDF = async () => {
-    setIsGenerating(true);
-    try {
-      const element = document.getElementById("resume-pdf");
-      const opt = {
-        margin: [15, 15],
-        filename: "resume.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      };
+  setIsGenerating(true);
+  try {
+    const element = document.getElementById("resume-pdf");
 
-      await html2pdf().set(opt).from(element).save();
-    } catch (error) {
-      console.error("PDF generation error:", error);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
+    // ✅ load only in browser
+    const html2pdf = (await import("html2pdf.js")).default;
+
+    const opt = {
+      margin: [15, 15],
+      filename: "resume.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2,backgroundColor: "#ffffff"},
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+
+    await html2pdf().set(opt).from(element).save();
+  } catch (error) {
+    console.error("PDF generation error:", error);
+  } finally {
+    setIsGenerating(false);
+  }
+};
+
+
+  
+  // const generatePDF = async () => {
+  //   setIsGenerating(true);
+  //   try {
+  //     const element = document.getElementById("resume-pdf");
+  //     const opt = {
+  //       margin: [15, 15],
+  //       filename: "resume.pdf",
+  //       image: { type: "jpeg", quality: 0.98 },
+  //       html2canvas: { scale: 2 },
+  //       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  //     };
+
+  //     await html2pdf().set(opt).from(element).save();
+  //   } catch (error) {
+  //     console.error("PDF generation error:", error);
+  //   } finally {
+  //     setIsGenerating(false);
+  //   }
+  // };
 
   return (
     <div data-color-mode="light" className="space-y-4">
@@ -405,15 +432,22 @@ export default function ResumeBuilder({ initialContent }) {
               preview={resumeMode}
             />
           </div>
-          <div className="hidden">
-            <div id="resume-pdf">
-              <MDEditor.Markdown
-                source={previewContent}
-                style={{
-                  background: "white",
-                  color: "black",
+             <div className="hidden">
+               <div
+                 id="resume-pdf"
+                 style={{
+                  all: "unset", // 🔥 reset ALL inherited styles
+                    display: "block",
+                    background: "#ffffff",
+                    color: "#000000",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "14px",
+                    lineHeight: "1.6",
+                    padding: "20px",
                 }}
-              />
+                >
+                 <ReactMarkdown>{previewContent}</ReactMarkdown>
+              
             </div>
           </div>
         </TabsContent>
