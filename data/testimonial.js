@@ -1,4 +1,6 @@
-export const testimonial = [
+
+
+export const testimonial =  [
   {
     quote:
       "The AI-powered interview prep was a game-changer. Landed my dream job at a top tech company!",
@@ -23,4 +25,6 @@ export const testimonial = [
     role: "Marketing Director",
     company: "Global Corp",
   },
+ 
 ];
+
