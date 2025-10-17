@@ -90,9 +90,12 @@ Create a .env file with at least:
 - Follow existing code patterns (React + Next.js app router, server actions in `actions/*`, UI primitives in `components/ui/*`).
 - Run lint and tests (if present) before pushing.
 
-## License
-- (Add license info)
+##Images
 - <img width="1457" height="912" alt="image" src="https://github.com/user-attachments/assets/8bbd7ca8-2dac-4abc-9160-480cc39ac0a2" />
+<img width="1463" height="780" alt="image" src="https://github.com/user-attachments/assets/f1d293ad-3614-484f-bb07-51519fed7f90" />
+<img width="1325" height="923" alt="image" src="https://github.com/user-attachments/assets/ff856ed5-5834-4c31-901b-961b438bf060" />
+
+
 
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
