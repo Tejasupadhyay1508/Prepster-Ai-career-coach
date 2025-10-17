@@ -92,5 +92,7 @@ Create a .env file with at least:
 
 ## License
 - (Add license info)
+- <img width="1457" height="912" alt="image" src="https://github.com/user-attachments/assets/8bbd7ca8-2dac-4abc-9160-480cc39ac0a2" />
+
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
